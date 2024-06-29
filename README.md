@@ -26,7 +26,7 @@ When I saw the actual price I wanted to see if I could replicate this using an A
    |CH2 Signal|D2|
    
    ![Calibration wiring](https://github.com/ambrmart/arduino-rc-lauch-control/blob/main/img/img001.jpg)
-4. Connect the Arduino to the computer via USB and open the serial monitor. You should see the 'Waiting for transmitter'
+4. Connect the Arduino to the computer via USB and open the serial monitor. You should see 'Waiting for transmitter'
 5. Turn on the transmitter and leave the throttle at neutral. It will now calculate the average neutral PWM signal.
 6. Next is the maximum forward calibration. Pull the trigger to the maximum throttle position and hold it until the calibration is done.
    - If nothing happens when holding full throttle go to the top of the sketch, set `reverse_Signal = true`, turn of the transmitter, upload the modified sketch unplug USB cable and go back to step 4.

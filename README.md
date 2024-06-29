@@ -4,6 +4,9 @@
 I randomly came across [this](https://www.youtube.com/watch?v=zmyIdEzfCtM) on youtube and expected it to be sub 5,00 €.
 When I saw the actual price I wanted to see if I could replicate this using an Arduino Nano. This is only missing the 'instant full throttle protection' and instead of using a trimpot, the delay is set in the code. I will design a 3d printed case for this at some point, but there are already thousands on the internet for projects like this.
 
+## Demonstration:
+_coming soonish .._
+
 ## Adjustable parmeters
 |Variable|Type|Description|
 | -------- | ------- | ------- |
@@ -43,7 +46,4 @@ When I saw the actual price I wanted to see if I could replicate this using an A
    |---|VCC Positive|VIN|
 
     ![final wireing](https://github.com/ambrmart/arduino-rc-lauch-control/blob/main/img/img002.jpg)
-11. Done, enjoy!
-
-## Demonstration:
-_coming soonish .._
+10. Done, enjoy!

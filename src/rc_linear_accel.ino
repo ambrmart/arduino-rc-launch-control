@@ -36,7 +36,7 @@ void setup() {
 
     target_pwm = pulseIn(receiverPin, HIGH, 25000);  // Reads in microseconds
 
-    Serial.print("Waiting for Transmitter.");
+    Serial.print("Waiting for transmitter.");
 
     while (target_pwm <= 1000) {
       delay(1000);

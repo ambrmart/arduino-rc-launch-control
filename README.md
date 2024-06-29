@@ -4,8 +4,8 @@
 I randomly came across [this](https://www.youtube.com/watch?v=zmyIdEzfCtM) on youtube and expected it to be sub 5,00 €.
 When I saw the actual price I wanted to see if I could replicate this using an Arduino Nano. This is only missing the 'instant full throttle protection' instead the linear acceleration starts even below the threshold if you go above it. The delay is also set in the code instead of using a trimpot. I developed and tested this with a Flysky GT2E/GT3B. According to [rc-network.de](https://wiki.rc-network.de/wiki/PWM) other brands have similar signals and this should work with those aswell.
 
-## Demonstration:
-_coming soonish .._
+## PWM diagram:
+![PWM diagram with different behaviours](https://github.com/ambrmart/arduino-rc-lauch-control/blob/main/img/img000.jpg?raw=true)
 
 ## Adjustable parmeters
 |Variable|Type|Description|

@@ -117,7 +117,7 @@ void setup() {
     Serial.println("Set the values above, disable calibration and upload the sketch.");
 
     while (true) {
-      // Infinite loop to stop further execution
+      // Infinite loop to stop further execution after calibration is over
     }
   }
   // Set calculation default value

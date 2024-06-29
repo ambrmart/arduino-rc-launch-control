@@ -2,7 +2,7 @@
 ### Linear acceleration control for rc speedruns and drag using an Arduino Nano.
 
 I randomly came across [this](https://www.youtube.com/watch?v=zmyIdEzfCtM) on youtube and expected it to be sub 5,00 €.
-When I saw the actual price I wanted to see if I could replicate this using an Arduino Nano. This is only missing the 'instant full throttle protection' and instead of using a trimpot, the delay is set in the code. I will design a 3d printed case for this at some point, but there are already thousands on the internet for projects like this.
+When I saw the actual price I wanted to see if I could replicate this using an Arduino Nano. This is only missing the 'instant full throttle protection' instead the linear acceleration starts even below the threshold if you go above it. The delay is also set in the code instead of using a trimpot. I will design a 3d printed case for this at some point, but there are already thousands on the internet for projects like this.
 
 ## Demonstration:
 _coming soonish .._

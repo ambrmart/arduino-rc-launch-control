@@ -18,7 +18,7 @@ _coming soonish .._
 |seconds_to_max|integer|Duration in seconds from threshold_pwm to max_pwm|
 |threshold_percent|float|Threshold percent above which acceleration is linear|
 
-## Possible changes:
+## Possible future changes:
 - I might add a trimpot.
 - Maybe I will design a 3d printed case for this, but there are already thousands on the internet for projects like this.
 

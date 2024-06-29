@@ -18,7 +18,7 @@ When I saw the actual price I wanted to see if I could replicate this using an A
 ## Setup:
 1. **Calibrate your ESC!!**
 2. Upload the sketch to a Arduino Nano (Calibration mode is enabled by default) and unplug it.
-3. Connect the the receiver's CH2 to the Arduino like this:
+3. Connect the receiver's CH2 to the Arduino like this:
    ![Calibration wiring](https://github.com/ambrmart/arduino-rc-lauch-control/blob/main/img/img001.jpg)
 4. Connect the Arduino to the computer via USB and open the serial monitor. You should see the 'Waiting for transmitter'
 5. Turn on the transmitter and leave the throttle at neutral. It will now calculate the average neutral PWM signal.

@@ -1,18 +1,34 @@
 # arduino-rc-lauch-control
 Linear acceleration control for rc speedruns and drag using an Arduino Nano.
 
-I randomly came across [this](https://www.youtube.com/watch?v=zmyIdEzfCtM) on youtube and expected it to be sub 10,00 €.
-When I saw the actual price I wanted to see if I could replicate this using an Arduino Nano.
+I randomly came across [this](https://www.youtube.com/watch?v=zmyIdEzfCtM) on youtube and expected it to be sub 5,00 €.
+When I saw the actual price I wanted to see if I could replicate this using an Arduino Nano. This is only missing the 'instant full throttle protection' and instead of using a trimpot, the delay is set in the code. I will design a 3d printed case for this at some point, but there are already thousands on the internet for projects like this.
 
-### Setup:
+## Adjustable parmeters
+|Variable|Type|Description|
+| -------- | ------- | ------- |
+|calibration|boolean|Enables calibration mode|
+|reverse_Signal|boolean|Enable if max throttle calibration is not working|
+|enable_serial|boolean|Enables serial output (forced during calibration)|
+|baseline_pwm|integer|Set manually after calibration|
+|max_pwm|integer|Set manually after calibration|
+|seconds_to_max|integer|Duration in seconds from threshold_pwm to max_pwm|
+|threshold_percent|float|Threshold percent above which acceleration is linear|
+
+## Setup:
 1. **Calibrate your ESC!!**
 2. Upload the sketch to a Arduino Nano (Calibration mode is enabled by default) and unplug it.
 3. Connect the the receiver's CH2 to the Arduino like this:
    ![Calibration wiring](https://github.com/ambrmart/arduino-rc-lauch-control/blob/main/img/img001.jpg)
-4. Connect the Arduino to the computer and open the serial monitor. You should see the 'Waiting for transmitter'
-5. Turn on the transmitter. It will now calculate the average neutral PWM signal.
-6. Next is the maximum forward calibration. Pull the trigger to the maximum throttle position and hold it until the calibration is done. (If nothing happens when holding full throttle go to the top of the sketch, set `reverse_Signal = true`, turn of the transmitter, upload the modified sketch unplug USB cable and start from step 4).
-7. After the calibration is done you have to go to the top of the sketch, set `baseline_pwm` and `max_pwm` to the calibration values and set `calibration = false`. You can also modify `seconds_to_max` and `threshold_percent` to your preference.
-8. Upload the final sketch to the Arduino and unplug the receiver and USB connection.
-9. Now wire the Arduino and now wire the arduino to the ESC and receiver like this:
-    ![final wireing]()
+4. Connect the Arduino to the computer via USB and open the serial monitor. You should see the 'Waiting for transmitter'
+5. Turn on the transmitter and leave the throttle at neutral. It will now calculate the average neutral PWM signal.
+6. Next is the maximum forward calibration. Pull the trigger to the maximum throttle position and hold it until the calibration is done.
+   - If nothing happens when holding full throttle go to the top of the sketch, set `reverse_Signal = true`, turn of the transmitter, upload the modified sketch unplug USB cable and go back to step 4.
+7. After the calibration is done you have to go to the top of the sketch, set `baseline_pwm` and `max_pwm` to the calibration values and set `calibration = false`.
+8. Upload the modified sketch to the Arduino and unplug the receiver and USB connection.
+9. Wire the Arduino to the ESC and receiver like this:
+    ![final wireing](https://github.com/ambrmart/arduino-rc-lauch-control/blob/main/img/img002.jpg)
+10. Done, enjoy!
+
+## Demonstration:
+_coming soonish .._

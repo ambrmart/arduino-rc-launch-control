@@ -20,7 +20,7 @@ _coming soonish .._
 
 ## Setup:
 1. **Calibrate your ESC!!**
-2. Upload the sketch to a Arduino Nano (Calibration mode is enabled by default) and unplug it.
+2. Upload the sketch to a Arduino Nano (Calibration mode is enabled by default) and unplug it from the computer.
 3. Connect the receiver's CH2 to the Arduino like this:
    |Receiver| Arduino Nano|
    | -------- | ------- |
@@ -33,7 +33,7 @@ _coming soonish .._
 5. Turn on the transmitter and leave the throttle at neutral. It will now calculate the average neutral PWM signal.
 6. Next is the maximum forward calibration. Pull the trigger to the maximum throttle position and hold it until the calibration is done.
    - If nothing happens when holding full throttle go to the top of the sketch, set `reverse_Signal = true`, turn of the transmitter, upload the modified sketch unplug USB cable and go back to step 4.
-7. After the calibration is done you have to go to the top of the sketch, set `baseline_pwm` and `max_pwm` to the calibration values and set `calibration = false`.
+7. After the calibration is done you have to go to the top of the sketch, set `baseline_pwm` and `max_pwm` to the calibration values and `calibration = false`.
 8. Upload the modified sketch to the Arduino and unplug the receiver and USB connection.
 9. Wire the Arduino to the ESC and receiver like this:
    |ESC|Receiver|Arduino Nano|

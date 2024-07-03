@@ -8,7 +8,7 @@ const int escPin = 9;       // Pin where the ESC signal wire is connected
 // Setup and settings
 const boolean calibration = true;     // Enables calibration mode
 const boolean reverse_Signal = false; // Enable if max throttle calibration is not working
-boolean enable_serial = false;        // Enable or disable serial output
+boolean enable_serial = false;        // Enables serial output (forced during calibration)
 int baseline_pwm = 1500;              // Baseline PWM signal (neutral position)
 int max_pwm = 2000;                   // Full throttle PWM signal (Full throttle position)
 int seconds_to_max = 4;               // Duration in seconds from threshold_pwm to max_pwm

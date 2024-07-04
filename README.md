@@ -10,13 +10,13 @@ When I saw the actual price I wanted to see if I could replicate this using an A
 ## Adjustable parmeters
 |Variable|Type|Description|
 | -------- | ------- | ------- |
-|calibration|boolean|Enables calibration mode|
-|reverseSignal|boolean|Enable if max throttle calibration is not working|
-|enableSerial|boolean|Enables serial output (forced during calibration)|
-|baselinePwm|integer|Set manually after calibration|
-|maxPwm|integer|Set manually after calibration|
-|secondsToMax|integer|Duration in seconds from threshold_pwm to max_pwm|
-|thresholdPercent|float|Threshold percent above which acceleration is linear|
+|`calibration`|boolean|Enables calibration mode|
+|`reverseSignal`|boolean|Enable if max throttle calibration is not working|
+|`enableSerial`|boolean|Enables serial output (forced during calibration)|
+|`baselinePwm`|integer|Set manually after calibration|
+|`maxPwm`|integer|Set manually after calibration|
+|`secondsToMax`|integer|Duration in seconds from `thresholdPwm` to `maxPwm`|
+|`thresholdPercent`|float|Threshold percent above which acceleration is linear|
 
 ## Possible future changes:
 - I might add a trimpot.

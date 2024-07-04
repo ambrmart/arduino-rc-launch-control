@@ -7,24 +7,24 @@ const int escPin = 9;       // Pin where the ESC signal wire is connected
 
 // Setup and settings
 const boolean calibration = true;      // Enables calibration mode
-const boolean reverse_Signal = false;  // Enable if max throttle calibration is not working
-boolean enable_serial = false;         // Enables serial output (forced during calibration)
-int baseline_pwm = 1500;               // Baseline PWM signal (neutral position)
-int max_pwm = 2000;                    // Full throttle PWM signal (full throttle position)
-int seconds_to_max = 4;                // Duration in seconds from threshold_pwm to max_pwm
-float threshold_percent = 0.2;         // Threshold percent above which acceleration is linear
+const boolean reverseSignal = false;  // Enable if max throttle calibration is not working
+boolean enableSerial = false;         // Enables serial output (forced during calibration)
+int baselinePwm = 1500;               // Baseline PWM signal (neutral position)
+int maxPwm = 2000;                    // Full throttle PWM signal (full throttle position)
+int secondsToMax = 4;                // Duration in seconds from thresholdPwm to maxPwm
+float thresholdPercent = 0.2;         // Threshold percent above which acceleration is linear
 
 // Don't touch
-int current_pwm;                   // Calculated PWM value
+int currentPwm;                   // Calculated PWM value
 int increment;                     // PWM increment per iteration
-int target_pwm = 0;                // Target PWM signal based on throttle position
-int threshold_pwm;                 // Threshold above which acceleration is linear
+int targetPwm = 0;                // Target PWM signal based on throttle position
+int thresholdPwm;                 // Threshold above which acceleration is linear
 const int interval = 40;           // Interval between increments (in milliseconds)
 unsigned long previousMillis = 0;  // Stores the last time the PWM was updated
 
 void setup() {
   pinMode(receiverPin, INPUT);
-  if (enable_serial || calibration) {
+  if (enableSerial || calibration) {
     Serial.begin(9600);  // Start serial communication at 9600 baud rate
   }
 
@@ -34,10 +34,10 @@ void setup() {
     Serial.println();
     Serial.print("Waiting for transmitter.");
 
-    while (target_pwm <= 1000) {
+    while (targetPwm <= 1000) {
       delay(1000);
       Serial.print(".");
-      target_pwm = pulseIn(receiverPin, HIGH, 25000);
+      targetPwm = pulseIn(receiverPin, HIGH, 25000);
     }
 
     Serial.println();
@@ -68,7 +68,7 @@ void setup() {
     Serial.print("Set the transmitter to maximum throttle and hold until calibration is over.");
 
     while (true) {
-      if (reverse_Signal) {
+      if (reverseSignal) {
         if (pulseIn(receiverPin, HIGH, 25000) <= averageNeutral - 350) {
           break;
         }
@@ -91,7 +91,7 @@ void setup() {
 
     for (int i = 0; i < 500; i++) {
       signalReading = pulseIn(receiverPin, HIGH, 25000);
-      if (reverse_Signal) {
+      if (reverseSignal) {
         if (signalReading < throttleMax) {
           throttleMax = signalReading;  // Setting maximum throttle PWM signal
         }
@@ -105,9 +105,9 @@ void setup() {
     // Print the average readings
     Serial.println();
     Serial.println("Calibration finished!");
-    Serial.print("baseline_pwm: ");
+    Serial.print("baselinePwm: ");
     Serial.println(averageNeutral);
-    Serial.print("max_pwm: ");
+    Serial.print("maxPwm: ");
     Serial.println(throttleMax);
     Serial.println("Set the values above, disable calibration and upload the sketch.");
 
@@ -118,27 +118,27 @@ void setup() {
     esc.attach(escPin);  // Attach the ESC to the appropriate pin
   }
   // Set calculation default value
-  current_pwm = baseline_pwm;
+  currentPwm = baselinePwm;
 
-  // Calculate threshold_pwm based on threshold_percent
-  if (reverse_Signal) {
-    threshold_pwm = baseline_pwm - (baseline_pwm - max_pwm) * threshold_percent;
+  // Calculate thresholdPwm based on thresholdPercent
+  if (reverseSignal) {
+    thresholdPwm = baselinePwm - (baselinePwm - maxPwm) * thresholdPercent;
   } else {
-    threshold_pwm = (max_pwm - baseline_pwm) * threshold_percent + baseline_pwm;
+    thresholdPwm = (maxPwm - baselinePwm) * thresholdPercent + baselinePwm;
   }
 
-  // Calculate increment based on seconds_to_max and interval
-  if (reverse_Signal) {
-    increment = (threshold_pwm - max_pwm) / (seconds_to_max * 1000 / interval);
+  // Calculate increment based on secondsToMax and interval
+  if (reverseSignal) {
+    increment = (thresholdPwm - maxPwm) / (secondsToMax * 1000 / interval);
   } else {
-    increment = (max_pwm - threshold_pwm) / (seconds_to_max * 1000 / interval);
+    increment = (maxPwm - thresholdPwm) / (secondsToMax * 1000 / interval);
   }
   delay(1000);  // Prevents Signaljitter on startup
 }
 
 void loop() {
   // Read the PWM signal from the RC receiver
-  target_pwm = pulseIn(receiverPin, HIGH, 25000);  // Reads in microseconds
+  targetPwm = pulseIn(receiverPin, HIGH, 25000);  // Reads in microseconds
 
   // Get the current time in milliseconds
   unsigned long currentMillis = millis();
@@ -147,28 +147,28 @@ void loop() {
   if (currentMillis - previousMillis >= interval) {
     previousMillis = currentMillis;
 
-    // Adjust the current_pwm
-    if ((target_pwm > threshold_pwm && !reverse_Signal) || (target_pwm < threshold_pwm && reverse_Signal)) {
-      // Ramp towards target_pwm if accelerating above threshold_pwm
-      if (current_pwm < target_pwm && !reverse_Signal) {
-        current_pwm += increment;
-      } else if (current_pwm > target_pwm && reverse_Signal) {
-        current_pwm -= increment;
+    // Adjust the currentPwm
+    if ((targetPwm > thresholdPwm && !reverseSignal) || (targetPwm < thresholdPwm && reverseSignal)) {
+      // Ramp towards targetPwm if accelerating above thresholdPwm
+      if (currentPwm < targetPwm && !reverseSignal) {
+        currentPwm += increment;
+      } else if (currentPwm > targetPwm && reverseSignal) {
+        currentPwm -= increment;
       }
     } else {
-      // Immediate response for throttle positions at or below threshold_pwm
-      current_pwm = target_pwm;
+      // Immediate response for throttle positions at or below thresholdPwm
+      currentPwm = targetPwm;
     }
 
     // Send the adjusted PWM signal to the ESC in microseconds
-    esc.writeMicroseconds(current_pwm);
+    esc.writeMicroseconds(currentPwm);
 
     // Output the adjusted PWM signal for testing
-    if (enable_serial) {
+    if (enableSerial) {
       Serial.print("Current PWM: ");
-      Serial.println(current_pwm);
+      Serial.println(currentPwm);
       Serial.print("Threshold PWM: ");
-      Serial.println(threshold_pwm);
+      Serial.println(thresholdPwm);
     }
   }
 }

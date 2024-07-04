@@ -11,12 +11,12 @@ When I saw the actual price I wanted to see if I could replicate this using an A
 |Variable|Type|Description|
 | -------- | ------- | ------- |
 |calibration|boolean|Enables calibration mode|
-|reverse_Signal|boolean|Enable if max throttle calibration is not working|
-|enable_serial|boolean|Enables serial output (forced during calibration)|
-|baseline_pwm|integer|Set manually after calibration|
-|max_pwm|integer|Set manually after calibration|
-|seconds_to_max|integer|Duration in seconds from threshold_pwm to max_pwm|
-|threshold_percent|float|Threshold percent above which acceleration is linear|
+|reverseSignal|boolean|Enable if max throttle calibration is not working|
+|enableSerial|boolean|Enables serial output (forced during calibration)|
+|baselinePwm|integer|Set manually after calibration|
+|maxPwm|integer|Set manually after calibration|
+|secondsToMax|integer|Duration in seconds from threshold_pwm to max_pwm|
+|thresholdPercent|float|Threshold percent above which acceleration is linear|
 
 ## Possible future changes:
 - I might add a trimpot.
@@ -36,8 +36,8 @@ When I saw the actual price I wanted to see if I could replicate this using an A
 4. Connect the Arduino to the computer via USB and open the serial monitor. You should see 'Waiting for transmitter'
 5. Turn on the transmitter and leave the throttle at neutral. It will now calculate the average neutral PWM signal.
 6. Next is the maximum forward calibration. Pull the trigger to the maximum throttle position and hold it until the calibration is done.
-   - If nothing happens when holding full throttle go to the top of the sketch, set `reverse_Signal = true`, turn of the transmitter, upload the modified sketch unplug USB cable and go back to step 4.
-7. After the calibration is done you have to go to the top of the sketch, set `baseline_pwm` and `max_pwm` to the calibration values and `calibration = false`.
+   - If nothing happens when holding full throttle go to the top of the sketch, set `reverseSignal = true`, turn of the transmitter, upload the modified sketch unplug USB cable and go back to step 4.
+7. After the calibration is done you have to go to the top of the sketch, set `baselinePwm` and `maxPwm` to the calibration values and `calibration = false`.
 8. Upload the modified sketch to the Arduino and unplug the receiver and USB connection.
 9. Wire the Arduino to the ESC and receiver like this:
    |ESC|Receiver|Arduino Nano|

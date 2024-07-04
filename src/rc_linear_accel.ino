@@ -6,21 +6,21 @@ const int receiverPin = 2;  // Pin where the RC receiver is connected
 const int escPin = 9;       // Pin where the ESC signal wire is connected
 
 // Setup and settings
-const boolean calibration = true;      // Enables calibration mode
-const boolean reverseSignal = false;  // Enable if max throttle calibration is not working
-boolean enableSerial = false;         // Enables serial output (forced during calibration)
-int baselinePwm = 1500;               // Baseline PWM signal (neutral position)
-int maxPwm = 2000;                    // Full throttle PWM signal (full throttle position)
+const boolean calibration = true;    // Enables calibration mode
+const boolean reverseSignal = false; // Enable if max throttle calibration is not working
+boolean enableSerial = false;        // Enables serial output (forced during calibration)
+int baselinePwm = 1500;              // Baseline PWM signal (neutral position)
+int maxPwm = 2000;                   // Full throttle PWM signal (full throttle position)
 int secondsToMax = 4;                // Duration in seconds from thresholdPwm to maxPwm
-float thresholdPercent = 0.2;         // Threshold percent above which acceleration is linear
+float thresholdPercent = 0.2;        // Threshold percent above which acceleration is linear
 
 // Don't touch
 int currentPwm;                   // Calculated PWM value
-int increment;                     // PWM increment per iteration
+int increment;                    // PWM increment per iteration
 int targetPwm = 0;                // Target PWM signal based on throttle position
 int thresholdPwm;                 // Threshold above which acceleration is linear
-const int interval = 40;           // Interval between increments (in milliseconds)
-unsigned long previousMillis = 0;  // Stores the last time the PWM was updated
+const int interval = 40;          // Interval between increments (in milliseconds)
+unsigned long previousMillis = 0; // Stores the last time the PWM was updated
 
 void setup() {
   pinMode(receiverPin, INPUT);

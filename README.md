@@ -1,11 +1,11 @@
-# arduino-rc-lauch-control
+# arduino-rc-launch-control
 ### Linear acceleration control for rc speedruns and drag using an Arduino Nano.
 
 I randomly came across [this](https://www.youtube.com/watch?v=zmyIdEzfCtM) on youtube and expected it to be sub 5,00 €.
 When I saw the actual price I wanted to see if I could replicate this using an Arduino Nano. This is only missing the 'instant full throttle protection' instead the linear acceleration starts even below the threshold if you go above it. The delay is also set in the code instead of using a trimpot. I developed and tested this with a Flysky GT2E/GT3B. According to [rc-network.de](https://wiki.rc-network.de/wiki/PWM) other brands have similar signals and this should work with those aswell.
 
 ## PWM diagram:
-![PWM diagram with different behaviours](https://github.com/ambrmart/arduino-rc-lauch-control/blob/main/img/img000.jpg?raw=true)
+![PWM diagram with different behaviours](https://github.com/ambrmart/arduino-rc-launch-control/blob/main/img/img000.jpg?raw=true)
 
 ## Adjustable parmeters
 |Variable|Type|Description|
@@ -32,7 +32,7 @@ When I saw the actual price I wanted to see if I could replicate this using an A
    |CH2 Positiv|5V|
    |CH2 Signal|D2|
    
-   ![Calibration wiring](https://github.com/ambrmart/arduino-rc-lauch-control/blob/main/img/img001.jpg)
+   ![Calibration wiring](https://github.com/ambrmart/arduino-rc-launch-control/blob/main/img/img001.jpg)
 4. Connect the Arduino to the computer via USB and open the serial monitor. You should see 'Waiting for transmitter'
 5. Turn on the transmitter and leave the throttle at neutral. It will now calculate the average neutral PWM signal.
 6. Next is the maximum forward calibration. Pull the trigger to the maximum throttle position and hold it until the calibration is done.
@@ -49,5 +49,5 @@ When I saw the actual price I wanted to see if I could replicate this using an A
    |---|VCC Negative|GND|
    |---|VCC Positive|VIN|
 
-    ![final wireing](https://github.com/ambrmart/arduino-rc-lauch-control/blob/main/img/img002.jpg)
+    ![final wireing](https://github.com/ambrmart/arduino-rc-launch-control/blob/main/img/img002.jpg)
 10. Done, enjoy!
